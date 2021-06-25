@@ -1,13 +1,18 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="menu/psv_login"></ion-back-button>
     </ion-buttons>
-    <ion-title>PSV Registration</ion-title>
+    <ion-title>Naulify</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-card-header>      
+      <ion-card-title class="ion-text-center">PSV Registration</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
   <form>    
     <ion-item lines="full">
       <ion-label position="floating">Email</ion-label>
@@ -24,5 +29,9 @@
       <ion-button type="submit" (click)="signUp(email, password)" expand="block">Register</ion-button>
       </ion-col>
     </ion-row>
+    <p><em>Or</em></p>
+    <ion-router-link [href]="['menu/psv_login']" routerDirection='root'>Login to PSV Account</ion-router-link>
   </form>
+</ion-card-content>
+</ion-card>
 </ion-content>

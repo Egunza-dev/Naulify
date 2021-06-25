@@ -1,16 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot='start'>
-      <ion-menu-button></ion-menu-button>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/commuter_login"></ion-back-button>
     </ion-buttons>
     <ion-title>Naulify</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <ion-card>
     <ion-card-header>      
-      <ion-card-title class="ion-text-center">PSV Login</ion-card-title>
+      <ion-card-title class="ion-text-center">Commuter Registration</ion-card-title>
     </ion-card-header>
     <ion-card-content>
   <form>    
@@ -26,12 +26,12 @@
 
     <ion-row>
       <ion-col> 
-      <ion-button type="submit" (click)="logIn(email, password)" expand="block">Login</ion-button>
+      <ion-button type="submit" (click)="signUp(email, password)" expand="block">Register </ion-button>
       </ion-col>
     </ion-row>
     <p><em>Or</em></p>
-    <ion-router-link [href]="['/psv-registration']" routerDirection='root'>Register For PSV Account</ion-router-link>
+    <ion-router-link [href]="['menu/commuter_login']" routerDirection='root'>Login to Commuter Account</ion-router-link>
   </form>
 </ion-card-content>
-</ion-card>  
+</ion-card>
 </ion-content>

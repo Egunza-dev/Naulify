@@ -3,10 +3,40 @@
     <ion-buttons slot='start'>
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Commuter Login</ion-title>
+    <ion-title>Naulify</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-card-header>      
+      <ion-card-title class="ion-text-center">Commuter Login</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+  <form> 
+    
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text" #email required></ion-input>
+    </ion-item> 
 
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" #password required></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col> 
+      <ion-button type="submit" (click)="logIn(email, password)" expand="block">Login</ion-button>
+      </ion-col>
+    </ion-row>
+    <p><em>Or</em></p>
+    <ion-router-link [href]="['/commuter-registration']" routerDirection='root'>Register For Commuter Account</ion-router-link>
+    
+  </form>
+</ion-card-content>
+</ion-card>
+  
+
+  
 </ion-content>

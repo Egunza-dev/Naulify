@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import firebase  from 'firebase/app';
-import { PSV_User } from "./psv_user";
+import { Commuter_User } from './commuter_user'
 import { Router } from "@angular/router";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -8,8 +8,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 @Injectable({
   providedIn: 'root'
 })
-
-export class PsvAuthService {
+export class CommuterAuthService {
   userData: any;
   
   constructor(
@@ -44,7 +43,7 @@ export class PsvAuthService {
    async SendVerificationMail() {
     (await this.ngFireAuth.currentUser).sendEmailVerification()
     .then(() => {
-      this.router.navigate(['verify-email']);
+      this.router.navigate(['commuter-verify-email']);
     })   }
   // Recover password
   PasswordRecover(passwordResetEmail) {
@@ -78,7 +77,7 @@ export class PsvAuthService {
     return this.ngFireAuth.signInWithPopup(provider)
     .then((result) => {
        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['commuter-dashboard']);
         })
       this.SetUserData(result.user);
     }).catch((error) => {
@@ -89,7 +88,7 @@ export class PsvAuthService {
   // Store user in localStorage
   SetUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afStore.doc(`users/${user.uid}`);
-    const userData: PSV_User = {
+    const userData: Commuter_User = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
@@ -105,7 +104,7 @@ export class PsvAuthService {
   SignOut() {
     return this.ngFireAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['menu/psv_login']);
+      this.router.navigate(['menu/commuter_login']);
     })
   }
 
