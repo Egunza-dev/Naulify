@@ -3,11 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CommuterDashboardPage } from './commuter-dashboard.page';
 
-const routes: Routes = [
+const routes: Routes =[
   {
-    path: '',
-    component: CommuterDashboardPage
-  }
+    path: 'commuter-dashboard',
+    component: CommuterDashboardPage,
+    children: [
+      {path: 'commuter-home', loadChildren: () => import('../commuter-home/commuter-home.module').then( m => m.CommuterHomePageModule)},
+      
+    ]
+  },
+  {path: '', redirectTo: 'commuter-dashboard/commuter-home'}
 ];
 
 @NgModule({

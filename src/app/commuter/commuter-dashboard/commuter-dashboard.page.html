@@ -1,9 +1,18 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Commuter Dashboard</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-split-pane contentId="main">
+  <ion-menu side='end' contentId="main">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Naulify</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide='false'>
+          <ion-item (click)="authService.SignOut()" routerDirection='root'>Logout</ion-item>          
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
 
-<ion-content>
-  <ion-button type="submit" (click)="authService.SignOut()" expand="block">Logout</ion-button>
-</ion-content>
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-split-pane>

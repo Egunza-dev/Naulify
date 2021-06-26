@@ -27,9 +27,8 @@ const routes: Routes = [
   {
     path: 'commuter-dashboard',
     loadChildren: () => import('./commuter/commuter-dashboard/commuter-dashboard.module').then( m => m.CommuterDashboardPageModule)
-  },
-
-  
+  }, 
+   
 ];
 
 @NgModule({
