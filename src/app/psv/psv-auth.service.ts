@@ -4,6 +4,7 @@ import { PSV_User } from "./psv_user";
 import { Router } from "@angular/router";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class PsvAuthService {
     public afStore: AngularFirestore,
     public ngFireAuth: AngularFireAuth,
     public router: Router,  
-    public ngZone: NgZone 
+    public ngZone: NgZone,
+    public toastController: ToastController  
   ) {
     this.ngFireAuth.authState.subscribe(user => {
       if (user) {
@@ -108,5 +110,37 @@ export class PsvAuthService {
       this.router.navigate(['menu/psv_login']);
     })
   }
+
+  displayToast(msg) {
+    
+    // Stop multiple toasts 
+    try {
+      this.toastController.dismiss().then(() => {
+      }).catch(() => {
+      }).finally(() => {
+        console.log('Closed')
+      });
+    } catch(e) {}
+    
+    this.toastController.create({
+      header: 'Error!',
+      message: msg,
+      position: 'middle',
+      cssClass: 'toast-custom-class',
+      buttons: [
+         {
+          side: 'end',
+          text: 'Close',
+          role: 'cancel',
+          handler: () => {
+            console.log('');
+          }
+        }
+      ]
+    }).then((toast) => {
+      toast.present();
+    });
+  }
+
 
 }

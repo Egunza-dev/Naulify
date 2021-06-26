@@ -24,11 +24,11 @@ export class LoginPage implements OnInit {
         if(res.user.emailVerified) {
           this.router.navigate(['commuter-dashboard']);          
         } else {
-          window.alert('Email is not verified')
+          this.authService.displayToast('Email is not verified')
           return false;
         }
       }).catch((error) => {
-        window.alert(error.message)
+        this.authService.displayToast(error.message)
       })
   }
 

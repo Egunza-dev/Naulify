@@ -24,7 +24,7 @@ export class CommuterRegistrationPage implements OnInit {
       this.authService.SendVerificationMail()
       this.router.navigate(['commuter-verify-email']);
     }).catch((error) => {
-      window.alert(error.message)
+      this.authService.displayToast(error.message)
     })
 }
 

@@ -24,7 +24,7 @@ export class PsvRegistrationPage implements OnInit {
       this.authService.SendVerificationMail()
       this.router.navigate(['verify-email']);
     }).catch((error) => {
-      window.alert(error.message)
+      this.authService.displayToast(error.message)
     })
 }
 
