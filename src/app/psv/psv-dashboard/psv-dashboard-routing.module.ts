@@ -9,6 +9,10 @@ const routes: Routes = [
     component: PsvDashboardPage,
     children: [
       {path: 'psv-home', loadChildren: () => import('../psv-home/psv-home.module').then( m => m.PsvHomePageModule)},
+      {
+        path: 'edit-psv-profile',
+        loadChildren: () => import('../edit-psv-profile/edit-psv-profile.module').then( m => m.EditPsvProfilePageModule)
+      },
       
     ]
   },

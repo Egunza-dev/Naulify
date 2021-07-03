@@ -24,10 +24,10 @@ export class PsvAuthService {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
+        console.log(JSON.parse(localStorage.getItem('user')));
       } else {
         localStorage.setItem('user', null);
-        JSON.parse(localStorage.getItem('user'));
+        //JSON.parse(localStorage.getItem('user'));
       }
     })
   }
@@ -105,8 +105,10 @@ export class PsvAuthService {
 
   // Sign-out 
   SignOut() {
+    localStorage.clear();
     return this.ngFireAuth.signOut().then(() => {
-      localStorage.removeItem('user');
+      localStorage.clear();
+
       this.router.navigate(['menu/psv_login']);
     })
   }
@@ -118,12 +120,12 @@ export class PsvAuthService {
       this.toastController.dismiss().then(() => {
       }).catch(() => {
       }).finally(() => {
-        console.log('Closed')
+        //console.log('Closed')
       });
     } catch(e) {}
     
     this.toastController.create({
-      header: 'Error!',
+      header: '',
       message: msg,
       position: 'middle',
       cssClass: 'toast-custom-class',
@@ -132,9 +134,7 @@ export class PsvAuthService {
           side: 'end',
           text: 'Close',
           role: 'cancel',
-          handler: () => {
-            console.log('');
-          }
+          handler: () => {}
         }
       ]
     }).then((toast) => {

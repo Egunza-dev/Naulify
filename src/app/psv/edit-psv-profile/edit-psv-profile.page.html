@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot='end'>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Naulify</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>      
+      <ion-card-title class="ion-text-center">Edit PSV Profile</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <form [formGroup]="updatePsvProfileForm" (ngSubmit)="updateForm()">
+        <ion-item>
+          <ion-label position="floating">PSV Owner/Agent Name</ion-label>
+          <ion-input formControlName="name" type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input formControlName="email" type="text" required></ion-input>
+        </ion-item>
+        
+  
+        <ion-item>
+          <ion-label position="floating">Mobile</ion-label>
+          <ion-input formControlName="mobile" type="number"  required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Vehicle Registration</ion-label>
+          <ion-input formControlName="registration" type="text"  required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Type of Vehicle</ion-label>
+          <ion-select placeholder="Select One" formControlName="vehicle_type">
+            <ion-select-option value="van">Van</ion-select-option>
+            <ion-select-option value="mini-bus">Mini-bus</ion-select-option>
+            <ion-select-option value="Bus">Bus</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Mpesa Shortcode</ion-label>
+          <ion-input formControlName="mpesa_code" type="text"  required>
+          </ion-input>
+        </ion-item>
+  
+        <ion-row>
+          <ion-col>
+            <ion-button type="submit" color="primary" >Update Psv Profile</ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+
+    </ion-card-content>
+  </ion-card> 
+
+</ion-content>

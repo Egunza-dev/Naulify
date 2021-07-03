@@ -3,10 +3,119 @@
     <ion-buttons slot='end'>
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>psv-home</ion-title>
+    <ion-title>Naulify</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-card *ngIf='bool === undefined'>
+    <ion-card-header>      
+      <ion-card-title class="ion-text-center">PSV Profile</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Loading<ion-progress-bar type="indeterminate"></ion-progress-bar></p>
+
+    </ion-card-content>
+  </ion-card> 
+
+
+
+  <ion-card *ngIf='bool === false'>
+    <ion-card-header>      
+      <ion-card-title class="ion-text-center">Fill in PSV Profile</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <form [formGroup]="psvForm" (ngSubmit)="formSubmit()">
+        <ion-item>
+          <ion-label position="floating">PSV Owner/Agent Name</ion-label>
+          <ion-input formControlName="name" type="text" required></ion-input>
+        </ion-item>
+        
+  
+        <ion-item>
+          <ion-label position="floating">Mobile</ion-label>
+          <ion-input formControlName="mobile" type="number"  required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Vehicle Registration</ion-label>
+          <ion-input formControlName="registration" type="text"  required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Type of Vehicle</ion-label>
+          <ion-select placeholder="Select One" formControlName="vehicle_type">
+            <ion-select-option value="van">Van</ion-select-option>
+            <ion-select-option value="mini-bus">Mini-bus</ion-select-option>
+            <ion-select-option value="Bus">Bus</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Mpesa Shortcode</ion-label>
+          <ion-input formControlName="mpesa_code" type="text"  required>
+          </ion-input>
+        </ion-item>
+  
+        <ion-row>
+          <ion-col>
+            <ion-button type="submit" color="primary" >Save Psv Profile</ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+
+    </ion-card-content>
+  </ion-card> 
+  
+  <ion-card *ngIf='bool === true'>
+    <ion-card-header>      
+      <ion-card-title class="ion-text-center">PSV Profile</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-card>
+        <ion-card-header>      
+          <ion-card-title class="ion-text-center">PSV Owner/Agent Details</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+        
+          <h5>
+            <ion-icon name="person"></ion-icon> Name : {{(psvObj === undefined) ? 'Loading...' : psvObj.name}}
+          </h5>
+          <p>
+            <ion-icon name="call"></ion-icon> Mobile : {{(psvObj === undefined) ? 'Loading...' : psvObj.mobile}}
+          </p>
+          <p>
+            <ion-icon name="mail"></ion-icon> Email : {{(psvObj === undefined) ? 'Loading...' : psvObj.email}}
+          </p>
+        </ion-card-content>
+      </ion-card> 
+
+       
+      <ion-card>
+        <ion-card-header>      
+          <ion-card-title class="ion-text-center">PSV Vehicle Details</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+        
+       
+          <p>Vehicle Registration : {{(psvObj === undefined) ? 'Loading...' : psvObj.vehicle.registration}}
+            
+        </p>
+          <p>Vehicle Type : {{(psvObj === undefined) ? 'Loading...' : psvObj.vehicle.type}}
+          </p>
+          <p>
+            Transaction Code : {{(psvObj === undefined) ? 'Loading...' : psvObj.vehicle.mpesa_code}}
+          </p>
+        </ion-card-content>
+      </ion-card>
+      
+      <ion-router-link [href]="['/edit-psv-profile']" >Edit PSV Profile</ion-router-link>
+    </ion-card-content>
+  </ion-card> 
 
 </ion-content>

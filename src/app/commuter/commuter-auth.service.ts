@@ -105,7 +105,7 @@ export class CommuterAuthService {
   // Sign-out 
   SignOut() {
     return this.ngFireAuth.signOut().then(() => {
-      localStorage.removeItem('user');
+      localStorage.clear();
       this.router.navigate(['menu/commuter_login']);
     })
   }

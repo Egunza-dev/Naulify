@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PsvHomePageRoutingModule } from './psv-home-routing.module';
+import { EditPsvProfilePageRoutingModule } from './edit-psv-profile-routing.module';
 
-import { PsvHomePage } from './psv-home.page';
+import { EditPsvProfilePage } from './edit-psv-profile.page';
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { PsvHomePage } from './psv-home.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    PsvHomePageRoutingModule
+    EditPsvProfilePageRoutingModule
   ],
-  declarations: [PsvHomePage]
+  declarations: [EditPsvProfilePage]
 })
-export class PsvHomePageModule {}
+export class EditPsvProfilePageModule {}

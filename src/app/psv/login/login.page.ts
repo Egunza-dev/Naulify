@@ -21,13 +21,16 @@ export class LoginPage implements OnInit {
     this.authService.SignIn(email.value, password.value)
       .then((res) => {
         if(res.user.emailVerified) {
-          this.router.navigate(['psv-dashboard']);          
+          localStorage.setItem('userId', JSON.stringify(res.user.uid));
+          this.router.navigate(['psv-dashboard']);
+          
+                  
         } else {
-          this.authService.displayToast('Email is not verified')
+          this.authService.displayToast('Email is not verified');
           return false;
         }
       }).catch((error) => {
-        this.authService.displayToast(error.message)
+        this.authService.displayToast(error.message);
       })
   }
 
