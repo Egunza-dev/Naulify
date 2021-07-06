@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot='end'>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Naulify</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>      
+      <ion-card-title class="ion-text-center">Manage Vehicle Routes</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-card>
+        <ion-card-header>      
+          <ion-card-title class="ion-text-center">Create Route</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <form [formGroup]="routeForm" (ngSubmit)="addRoute()">
+            <ion-item>
+              <ion-label position="floating">Route Description</ion-label>
+              <ion-input formControlName="route_desc" type="text" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Route Fare Cost</ion-label>
+              <ion-input formControlName="cost" type="number" required></ion-input>
+            </ion-item>
+
+            <ion-row>
+              <ion-col>
+                <ion-button type="submit" color="primary" >Add Route</ion-button>
+              </ion-col>
+            </ion-row>
+
+          </form>
+        
+          
+        </ion-card-content>
+      </ion-card> 
+
+       
+      <ion-card>
+        <ion-card-header>      
+          <ion-card-title class="ion-text-center">Route List</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+
+          <ion-list class="ios list-ios hydrated">
+            <ion-list-header class="ios hydrated">
+              PSV Routes
+            </ion-list-header>
+        
+            <ion-item *ngFor="let route of Routes" class="user-list">
+              <ion-label>
+                <h5>
+                   {{route.route_description}}
+                </h5>
+                <p>
+                   {{route.route_fare | currency: 'KES '}}
+                </p>
+              </ion-label>
+        
+              <div class="item-note" item-end>
+                <button ion-button clear (click)="deleteRoute(route.$key)">
+                  <ion-icon name="trash" style="zoom:2.0"></ion-icon>
+                </button>
+              </div>
+            </ion-item>
+          </ion-list>
+          
+        </ion-card-content>
+      </ion-card>
+      
+      <ion-router-link [href]="['/psv-dashboard/psv-dashboard/psv-home']" >Back to PSV Dashboard</ion-router-link>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
