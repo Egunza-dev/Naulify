@@ -27,11 +27,7 @@ const routes: Routes = [
   {
     path: 'commuter-dashboard',
     loadChildren: () => import('./commuter/commuter-dashboard/commuter-dashboard.module').then( m => m.CommuterDashboardPageModule)
-  },   {
-    path: 'edit-psv-profile',
-    loadChildren: () => import('./psv/edit-psv-profile/edit-psv-profile.module').then( m => m.EditPsvProfilePageModule)
   },
-  {path: 'psv-home', loadChildren: () => import('./psv/psv-home/psv-home.module').then( m => m.PsvHomePageModule)},
       
 
    

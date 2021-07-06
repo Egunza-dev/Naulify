@@ -11,6 +11,7 @@ import { PsvAuthService } from '../psv-auth.service';
 })
 export class EditPsvProfilePage implements OnInit {
   updatePsvProfileForm: FormGroup;
+  user = JSON.parse(localStorage.getItem('user'));
 
   constructor(
     private psvService: PsvService,
@@ -18,15 +19,12 @@ export class EditPsvProfilePage implements OnInit {
     private actRoute: ActivatedRoute,
     private router: Router,
     public fb: FormBuilder
-  ) {}
-
-  ngOnInit() {
-
-    this.psvService.getPsvProfile().then((snapshot) => {
+  ) {
+    this.psvService.getPsvProfile(this.user.uid).then((snapshot) => {
       let profile = snapshot.val();
       let value = {
         name: profile.name,
-        email: profile.email,
+        email: this.user.email,
         mobile: profile.mobile,
         registration:profile.vehicle.registration,
         vehicle_type:profile.vehicle.type,
@@ -34,6 +32,11 @@ export class EditPsvProfilePage implements OnInit {
         }
       this.updatePsvProfileForm.setValue(value);
     });
+  }
+
+  ngOnInit() {
+
+    
 
     this.updatePsvProfileForm = this.fb.group({
       name: [''], 
@@ -48,10 +51,10 @@ export class EditPsvProfilePage implements OnInit {
 
 
 updateForm() {
-  this.psvService.updatePsvProfile(this.updatePsvProfileForm.value)
+  this.psvService.updatePsvProfile(this.updatePsvProfileForm.value, this.user.uid, this.user.email)
     .then(() => {
       this.authService.displayToast('Update Successfull.')
-      this.router.navigate(['psv-home']);
+      this.router.navigate(['/psv-dashboard/psv-dashboard/psv-home']);
     })
     .catch(error => this.authService.displayToast(error));
 }

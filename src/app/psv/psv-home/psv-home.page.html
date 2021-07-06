@@ -84,13 +84,13 @@
         <ion-card-content>
         
           <h5>
-            <ion-icon name="person"></ion-icon> Name : {{(psvObj === undefined) ? 'Loading...' : psvObj.name}}
+            <ion-icon name="person" style="zoom:2.0"></ion-icon> Name : {{(psvObj === undefined) ? 'Loading...' : psvObj.name}}
           </h5>
           <p>
-            <ion-icon name="call"></ion-icon> Mobile : {{(psvObj === undefined) ? 'Loading...' : psvObj.mobile}}
+            <ion-icon name="call" style="zoom:2.0"></ion-icon> Mobile : {{(psvObj === undefined) ? 'Loading...' : psvObj.mobile}}
           </p>
           <p>
-            <ion-icon name="mail"></ion-icon> Email : {{(psvObj === undefined) ? 'Loading...' : psvObj.email}}
+            <ion-icon name="mail" style="zoom:2.0"></ion-icon> Email : {{(psvObj === undefined) ? 'Loading...' : psvObj.email}}
           </p>
         </ion-card-content>
       </ion-card> 
@@ -113,8 +113,12 @@
           </p>
         </ion-card-content>
       </ion-card>
-      
-      <ion-router-link [href]="['/edit-psv-profile']" >Edit PSV Profile</ion-router-link>
+      <ion-item>
+      <ion-router-link [href]="['/psv-dashboard/psv-dashboard/edit-psv-profile']" >Edit PSV Profile</ion-router-link>
+    </ion-item>
+    <ion-item>
+    <ion-router-link [href]="['/psv-dashboard/psv-dashboard/manage-routes']" >Manage Routes</ion-router-link>
+    </ion-item>
     </ion-card-content>
   </ion-card> 
 

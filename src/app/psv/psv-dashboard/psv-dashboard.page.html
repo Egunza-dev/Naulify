@@ -8,6 +8,15 @@
     <ion-content>
       <ion-list>
         <ion-menu-toggle auto-hide='false'>
+          <ion-item>
+            <ion-router-link [href]="['/psv-dashboard/psv-dashboard/psv-home']" >DashBoard</ion-router-link>
+          </ion-item>
+          <ion-item>
+            <ion-router-link [href]="['/psv-dashboard/psv-dashboard/edit-psv-profile']" >Edit PSV Profile</ion-router-link>
+          </ion-item>
+          <ion-item>
+          <ion-router-link [href]="['/psv-dashboard/psv-dashboard/manage-routes']" >Manage Routes</ion-router-link>
+          </ion-item>
           <ion-item (click)="authService.SignOut()" routerDirection='root'>Logout</ion-item>          
         </ion-menu-toggle>
       </ion-list>

@@ -13,18 +13,19 @@ export class PsvHomePage implements OnInit {
   psvForm: FormGroup;  
   psvObj: any;
   bool:any;
+  user = JSON.parse(localStorage.getItem('user'));
   constructor(public router: Router,
               public fb: FormBuilder,
               public psvService: PsvService) {}
 
   ngOnInit() {
 
-    this.psvService.checkProfile().on('value', (snapshot) => {
+    this.psvService.checkProfile(this.user.uid).on('value', (snapshot) => {
       let bool = snapshot.exists()
       this.setBool(bool);
       });
 
-      this.psvService.getPsvProfile().then((snapshot) => {
+      this.psvService.getPsvProfile(this.user.uid).then((snapshot) => {
         let data = snapshot.val();
         this.setPsvObj(data); 
       });
@@ -53,8 +54,8 @@ export class PsvHomePage implements OnInit {
     if (!this.psvForm.valid) {
       return false;
     } else {
-      this.psvService.createPsvProfile(this.psvForm.value)
-      this.psvService.getPsvProfile().then((snapshot) => {
+      this.psvService.createPsvProfile(this.psvForm.value, this.user.uid, this.user.email)
+      this.psvService.getPsvProfile(this.user.uid).then((snapshot) => {
         let data = snapshot.val();
         this.setPsvObj(data); 
       });

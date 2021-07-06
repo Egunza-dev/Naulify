@@ -11,11 +11,9 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 })
 export class PsvService {
   
-  psv_profileRef:AngularFireObject<any>;
-  psv_profileListRef:AngularFireList<any>;
+  psv_routeRef:AngularFireObject<any>;
+  psv_routeListRef:AngularFireList<any>;
   database = firebase.database();
-  userId = JSON.parse(localStorage.getItem('user')).uid;
-  email = JSON.parse(localStorage.getItem('user')).email;
   psvProfile: any;  
 
   constructor(private db: AngularFireDatabase,
@@ -26,14 +24,14 @@ export class PsvService {
 
   
   
-   checkProfile(){   
-        return this.database.ref('psv_profile/' + this.userId); 
+   checkProfile(userId:any){   
+        return this.database.ref('psv_profile/' + userId); 
     } 
   // Create PSV Profile
-  createPsvProfile(profile) {
-    this.database.ref('psv_profile/' + this.userId).set({
+  createPsvProfile(profile, userId, email) {
+    this.database.ref('psv_profile/' + userId).set({
       name: profile.name,
-      email: this.email,
+      email: email,
       mobile: profile.mobile,
       vehicle:{
         registration:profile.registration,
@@ -52,15 +50,15 @@ export class PsvService {
   }
 
   // Get Single PSV Profile
-  getPsvProfile() {            
-    return firebase.database().ref('psv_profile/' + this.userId).once("value");    
+  getPsvProfile(userId) {            
+    return firebase.database().ref('psv_profile/' + userId).once("value");    
   }
 
-  updatePsvProfile(profile) {
+  updatePsvProfile(profile, userId, email) {
   
   let value = {
     name: profile.name,
-    email: this.email,
+    email: email,
     mobile: profile.mobile,
     vehicle:{
       registration:profile.registration,
@@ -69,11 +67,42 @@ export class PsvService {
     }}
 
   let updates = {};
-  updates['psv_profile/' + this.userId] = value;
+  updates['psv_profile/' + userId] = value;
   
   return firebase.database().ref().update(updates);
   }
 
+
+  createRoute(psv_id: any, value: any) {
+
+    let newRouteKey = firebase.database().ref().child('psv_routes').child(psv_id).push().key;
+
+    this.database.ref('/psv_routes/' + psv_id + '/' + newRouteKey).set({
+      
+      route_description: value.route_desc,
+      route_fare: value.cost,
+      psv_id:psv_id      
+      }, (error) => {
+      if (error) {
+        // The write failed...
+        this.authservice.displayToast(error);
+      } else {
+        // Data saved successfully!
+        //this.router.navigate(['psv-dashboard']);
+        this.authservice.displayToast('Route Successfully Created.');
+      }});
+    
+  }
+
+  getRoutes(psv_id: any) {
+    return this.database.ref('/psv_routes/' + psv_id)
+  }
+
+  deleteRoute(route_key: any, psv_id: any) {
+    this.psv_routeRef = this.db.object('/psv_routes/' + psv_id + '/' + route_key);
+    this.psv_routeRef.remove();
+  }
+   
 
 
 }

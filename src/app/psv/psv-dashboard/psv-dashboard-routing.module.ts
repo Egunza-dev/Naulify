@@ -13,6 +13,12 @@ const routes: Routes = [
         path: 'edit-psv-profile',
         loadChildren: () => import('../edit-psv-profile/edit-psv-profile.module').then( m => m.EditPsvProfilePageModule)
       },
+      {
+        path: 'manage-routes',
+        loadChildren: () => import('../manage-routes/manage-routes.module').then( m => m.ManageRoutesPageModule)
+      },
+  
+
       
     ]
   },
