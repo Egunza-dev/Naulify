@@ -17,6 +17,10 @@ const routes: Routes = [
         path: 'manage-routes',
         loadChildren: () => import('../manage-routes/manage-routes.module').then( m => m.ManageRoutesPageModule)
       },
+      {
+        path: 'generate-qr-code',
+        loadChildren: () => import('../generate-qr-code/generate-qr-code.module').then( m => m.GenerateQrCodePageModule)
+      },
   
 
       

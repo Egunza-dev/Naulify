@@ -1,5 +1,7 @@
 {
   "name": "naulify_1",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

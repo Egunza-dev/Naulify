@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot='end'>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Naulify</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>      
+      <ion-card-title class="ion-text-center">Generate QR Code</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-button full icon-left (click)='createCode()'><ion-icon name='qrcode'></ion-icon>Create QR Code</ion-button>
+      </ion-item>
+      <ion-card *ngIf='createdCode'>
+        <ion-card-header>      
+          <ion-card-title class="ion-text-center">PSV QR Code</ion-card-title>
+        </ion-card-header>
+        <ngx-qrcode [value]='createdCode'></ngx-qrcode>
+        <ion-card-content>
+          <a [href]="href" *ngIf="display" (click)="downloadImage()" download>Download QR Code</a>
+          <p>Value : {{createdCode}}</p>
+        </ion-card-content>
+      </ion-card>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
